@@ -19,7 +19,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
    
    /**
    * Creates a bag with a specified intial capacity.
-   * @param initialCapcity the desired integer capacity.
+   * @param initialCapacity the desired integer capacity.
    */
    public ResizableArrayBag(int initialCapacity)
    {
