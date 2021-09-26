@@ -6,7 +6,7 @@ Jana Georgievski
 -Edited together video  
 
 Joshua Lai  
--Wrote ResizableArrayBag and LinkedBag  
+-Wrote BagInterface, ResizableArrayBag and LinkedBag  
 -Wrote part of javadoc documentation for ResizableArrayBag and LinkedBag  
 -Wrote union, intersection, and difference methods  
 -Wrote part of test classes  
