@@ -4,17 +4,25 @@ public class LinkedBag<T> implements BagInterface<T>
 {
    private Node<T> firstNode;
    private int numberOfEntries;
+   /**
+   * Creates an empty linked bag.
+   */
    public LinkedBag()
    {
       firstNode = null;
       numberOfEntries = 0;
-   }
+   } //end default constructor
    @Override
+   /**
+   * Creates a bag with all items in this bag with another one.
+   * @param otherBag the other bag which will be combined with this one.
+   * @return a bag containing all the items of the two bags.
+   */
    public BagInterface<T> union(BagInterface<T> otherBag)
    {
       T[] thisArray = this.toArray();
       T[] otherArray = otherBag.toArray();
-      BagInterface<T> result = new LinkedBag<T>();
+      LinkedBag<T> result = new LinkedBag<T>();
       for(int i = 0; i < thisArray.length; i++)
       {
          result.add(thisArray[i]);
@@ -25,13 +33,18 @@ public class LinkedBag<T> implements BagInterface<T>
       }
       return result;
    }
+   /**
+   * Creates a bag with all the matching items in this bag and another one.
+   * @param otherBag the other bag which will be combined with this one.
+   * @return a bag containing all the items that were in both bags.
+   */
    @Override
    public BagInterface<T> intersection(BagInterface<T> otherBag)
    {
       T[] thisArray = this.toArray();
       T[] otherArray = otherBag.toArray();
       boolean[] used = new boolean[otherArray.length];
-      BagInterface<T> result = new LinkedBag<T>();
+      LinkedBag<T> result = new LinkedBag<T>();
       for(int i = 0; i < thisArray.length; i++)
       {
          for(int j = 0; j < otherArray.length; j++)
@@ -46,13 +59,18 @@ public class LinkedBag<T> implements BagInterface<T>
       }
       return result;
    }
+   /**
+   * Creates a bag that has all the elements in this bag which are not in the second.
+   * @param otherBag the other bag which will be combined with this one.
+   * @return a bag containing the items that were in this bag but not otherBag.
+   */
    @Override
    public BagInterface<T> difference(BagInterface<T> otherBag)
    {
       T[] thisArray = this.toArray();
       T[] otherArray = otherBag.toArray();
       boolean[] used = new boolean[otherArray.length];
-      BagInterface<T> result = new LinkedBag<T>();
+      LinkedBag<T> result = new LinkedBag<T>();
       for(T item : thisArray)
       {
          result.add(item);
@@ -203,7 +221,9 @@ public class LinkedBag<T> implements BagInterface<T>
       return result;
    }
    /**
-   * 
+   * Finds the node that contains specified data.
+   * @param entry the data to find.
+   * @return the node that contains the data in entry.
    */
    private Node<T> getReferenceTo(T entry)
    {
@@ -226,19 +246,35 @@ class Node<T>
    public Node(T newData)
    {
       data = newData;
-   }
+   } // end constructor
+   
+   /**
+   * @return the data in the node.
+   */
    public T getData()
    {
       return data;
    }
+
+   /**
+   * @param newData the data to put in the node.
+   */
    public void setData(T newData)
    {
       data = newData;
    }
+   
+   /**
+   * @return the next node in the chain.
+   */
    public Node<T> getNext()
    {
       return next;
    }
+   
+   /**
+   * @param newNext the node to be set as the next node in the chain.
+   */
    public void setNext(Node<T> newNext)
    {
       next = newNext;

@@ -9,10 +9,18 @@ public class ResizableArrayBag<T> implements BagInterface<T>
    private boolean integrityOK;
    private final int MAX_CAPACITY = 10000;
    private static final int DEFAULT_CAPACITY = 25;
+   /**
+   * Creates a bag with a default capacity of 25.
+   */
    public ResizableArrayBag()
    {
       this(DEFAULT_CAPACITY);
-   }
+   } //end default constructor
+   
+   /**
+   * Creates a bag with a specified intial capacity.
+   * @param initialCapcity the desired integer capacity.
+   */
    public ResizableArrayBag(int initialCapacity)
    {
       if(initialCapacity <= MAX_CAPACITY)
@@ -28,13 +36,18 @@ public class ResizableArrayBag<T> implements BagInterface<T>
          throw new IllegalStateException("Attempted to create a bag whose capacity exceeds " +
                                          "allowed maximum of " + MAX_CAPACITY);
       }
-   }
+   } //end constructor
+   /**
+   * Creates a bag with all items in this bag with another one.
+   * @param otherBag the other bag which will be combined with this one.
+   * @return a bag containing all the items of the two bags.
+   */
    @Override
    public BagInterface<T> union(BagInterface<T> otherBag)
    {
       T[] thisArray = this.toArray();
       T[] otherArray = otherBag.toArray();
-      BagInterface<T> result = new ResizableArrayBag<T>(thisArray.length + otherArray.length);
+      ResizableArrayBag<T> result = new ResizableArrayBag<T>(thisArray.length + otherArray.length);
       for(int i = 0; i < thisArray.length; i++)
       {
          result.add(thisArray[i]);
@@ -45,13 +58,18 @@ public class ResizableArrayBag<T> implements BagInterface<T>
       }
       return result;
    }
+   /**
+   * Creates a bag with all the matching items in this bag and another one.
+   * @param otherBag the other bag which will be combined with this one.
+   * @return a bag containing all the items that were in both bags.
+   */
    @Override
    public BagInterface<T> intersection(BagInterface<T> otherBag)
    {
       T[] thisArray = this.toArray();
       T[] otherArray = otherBag.toArray();
       boolean[] used = new boolean[otherArray.length];
-      BagInterface<T> result = new ResizableArrayBag<T>();
+      ResizableArrayBag<T> result = new ResizableArrayBag<T>();
       for(int i = 0; i < thisArray.length; i++)
       {
          for(int j = 0; j < otherArray.length; j++)
@@ -66,13 +84,18 @@ public class ResizableArrayBag<T> implements BagInterface<T>
       }
       return result;
    }
+   /**
+   * Creates a bag that has all the elements in this bag which are not in the second.
+   * @param otherBag the other bag which will be combined with this one.
+   * @return a bag containing the items that were in this bag but not otherBag.
+   */
    @Override
    public BagInterface<T> difference(BagInterface<T> otherBag)
    {
       T[] thisArray = this.toArray();
       T[] otherArray = otherBag.toArray();
       boolean[] used = new boolean[otherArray.length];
-      BagInterface<T> result = new ResizableArrayBag<T>();
+      ResizableArrayBag<T> result = new ResizableArrayBag<T>();
       for(T item : thisArray)
       {
          result.add(item);
@@ -91,17 +114,28 @@ public class ResizableArrayBag<T> implements BagInterface<T>
       }
       return result;
    }
+   /**
+   * Doubles the size of the bag array.
+   */
    private void doubleCapacity()
    {
       int newLength = 2*bag.length;
       resize(newLength);
    } 
+   /**
+   * Resizes the bag array to a new length.
+   * @param newsize the desired length of the bag array.
+   */
    private void resize(int newSize)
    {
       T[] newBag = Arrays.copyOf(bag, newSize);
       bag = newBag;
       checkCapacity(bag.length);
    }
+   /**
+   * Ensures the capacity does not exceed the maximum allowed capacity.
+   * @param capacity the capacity to check.
+   */
    private void checkCapacity(int capacity)
    {
       if (capacity > MAX_CAPACITY)
@@ -252,6 +286,9 @@ public class ResizableArrayBag<T> implements BagInterface<T>
       }
       return objToBeRemoved;
    }
+   /**
+   * Ensures the bag is not corrupt. If it is, it throws a SecurityException.
+   */
    private void checkIntegrity()
    {
       if(!integrityOK)
