@@ -1,11 +1,11 @@
 # Project-1
-Jana Georgievski  
+Jana Georgievski (pesimelaki1)  
 -Wrote part of javadoc documentation for ResizableArrayBag and LinkedBag  
 -Wrote part of test classes  
 -Wrote Big O Notation  
 -Edited together video  
 
-Joshua Lai  
+Joshua Lai (OrbinWaffle)  
 -Wrote BagInterface, ResizableArrayBag and LinkedBag  
 -Wrote part of javadoc documentation for ResizableArrayBag and LinkedBag  
 -Wrote union, intersection, and difference methods  
